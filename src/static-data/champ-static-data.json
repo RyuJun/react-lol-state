@@ -845,8 +845,16 @@
         "key": "Gragas",
         "name": "그라가스",
         "title": "술취한 난동꾼"
+      },
+      "Sylas": {
+        "id": 517,
+        "key": "Sylas",
+        "name": "사일러스",
+        "title": "해방된 자"
       }
     },
     "type": "champion",
     "version": "8.13.1"
   }
+
+

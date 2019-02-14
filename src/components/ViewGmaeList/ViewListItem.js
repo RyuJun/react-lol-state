@@ -9,7 +9,7 @@ class ViewListItem extends Component {
         toggle : false
     }
     handleToggleItem = (gameId) => {
-        ApiDefault.instance.get(`/match/v3/matches/${this.props.match.gameId}?api_key=${ApiDefault.key}`)
+        ApiDefault.instance.get(`/match/v4/matches/${this.props.match.gameId}?api_key=${ApiDefault.key}`)
         .then( Detaildata => {
             this.setState({
                 toggle : !this.state.toggle,

@@ -117,7 +117,9 @@ const GetUserMMR = {
 const GetGameData = {
     getChampData : (champion) => {
         for (let i in champData.data) {
-            if(champData.data[i].id === champion) return champData.data[i]
+            if(champData.data[i].id === champion) {
+              return champData.data[i] === undefined ? undefined : champData.data[i];
+            }
         }
     },
     getGameTime : (timestamp) => {

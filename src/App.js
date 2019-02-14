@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import axios from 'axios';
 import ViewSearchID from './components/ViewSearchID'
 import ViewListWrapper from './components/ViewListWrapper'
 import ApiDefault from './components/ApiDefault'
@@ -11,15 +12,20 @@ class App extends Component {
     match : {},
     league : {}
   };
-  getLOLData = async function() {
+  getLOLData = async () => {
     if(this.state.input.length <= 0) {
       alert("ID를 입력해주세요")
       return;
     }
     try {
-      const summoner = await ApiDefault.instance.get(`/summoner/v3/summoners/by-name/${this.state.input}?api_key=${ApiDefault.key}`);
-      const match    = await ApiDefault.instance.get(`/match/v3/matchlists/by-account/${summoner.data.accountId}?api_key=${ApiDefault.key}`);
-      const league   = await ApiDefault.instance.get(`/league/v3/positions/by-summoner/${summoner.data.id}?api_key=${ApiDefault.key}`); 
+      const summoner = await ApiDefault.instance.get(`/summoner/v4/summoners/by-name/${this.state.input}?api_key=${ApiDefault.key}`);
+      const match    = await ApiDefault.instance.get(`/match/v4/matchlists/by-account/${summoner.data.accountId}?api_key=${ApiDefault.key}`);
+      const league   = await ApiDefault.instance.get(`/league/v4/positions/by-summoner/${summoner.data.id}?api_key=${ApiDefault.key}`); 
+      if( league.data[0] === undefined ){
+        alert('언랭은 검색못해요...');
+        return;
+      } 
+
       this.setState({
         summoner: summoner.data,
         match : match.data,

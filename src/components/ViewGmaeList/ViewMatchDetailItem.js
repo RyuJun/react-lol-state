@@ -14,7 +14,9 @@ class ViewMatchDetailItem extends Component {
             kills = participants.stats.quadraKills > 0 ? "팬타킬" :kills ;
         return (
             <div className={`ViewMatchDetailItem ${userTeam[0].win} col-md-12 ${summoner.name === player.summonerName ? "myState" : null}`}>
-                <div className="col-md-2 col-sm-2 col-3"><img src={`http://opgg-static.akamaized.net/images/lol/champion/${gmaeData.getChampData(participants.championId).key}.png?image=w_52&v=1`} alt="CampIcon"/></div>
+                <div className="col-md-2 col-sm-2 col-3">
+                    { gmaeData.getChampData(participants.championId) !== undefined ? <img src={`http://opgg-static.akamaized.net/images/lol/champion/${gmaeData.getChampData(participants.championId).key}.png?image=w_52&v=1`} alt="CampIcon"/> : "" }
+                </div>
                 <div className="col-md-3 col-sm-3 col-4 summonerName"><h6>{player.summonerName}</h6></div>
                 <div className="DetailItemIcon col-md-2 col-sm-3 d-none d-sm-block">
                     {participants.stats.item0 === 0 ? null : <img src={gmaeData.getItemUrl(participants.stats.item0)} alt="item01"/>}
